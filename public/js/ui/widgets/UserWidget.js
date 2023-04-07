@@ -5,6 +5,7 @@
  * */
 
 class UserWidget {
+
   /**
    * Устанавливает полученный элемент
    * в свойство element.
@@ -12,7 +13,10 @@ class UserWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor(element){
-
+    if (!element) {
+      throw new Error("Undefined element in UserWidget constructor");
+    }
+    this.element = element;
   }
 
   /**
@@ -23,6 +27,9 @@ class UserWidget {
    * авторизованного пользователя
    * */
   update(){
-
+    let currentUser = User.current();
+    if (currentUser) {
+      document.querySelector(".user-name").textContent = currentUser.name;
+    }
   }
 }
